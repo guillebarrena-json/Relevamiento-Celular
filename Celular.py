@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[89]:
-
-
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -27,17 +21,11 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-# In[52]:
-
-
 excel = pd.read_excel('RELEVAMIENTOcelular.xlsx')
 
 claro = excel[excel['Compañía']=='CLARO']
 movistar = excel[excel['Compañía']=='MOVISTAR']
 personal = excel[excel['Compañía']=='PERSONAL']
-
-
-# In[53]:
 
 
 import certifi
