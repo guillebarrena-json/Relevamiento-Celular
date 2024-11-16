@@ -34,7 +34,7 @@ http = urllib3.PoolManager(
     cert_reqs='CERT_REQUIRED',
     ca_certs=certifi.where())
 
-#esto es por un tema de certificaciones de las URL, mas info en: https://urllib3.readthedocs.io/en/1.26.x/user-guide.html#ssl
+# Esto es por un tema de certificaciones de las URL, mas info en: https://urllib3.readthedocs.io/en/1.26.x/user-guide.html#ssl
 
 for url in excel['Link']:    
     attempts = 3
@@ -107,7 +107,6 @@ for url in claro['Link']:
 
     time.sleep(2)
 
-# Crear DataFrame
 df_claro = pd.DataFrame(data={
     'Nombre del Plan': planes,
     'Nombre Completo del Plan': nombres_completos,
@@ -123,7 +122,6 @@ service = Service(ChromeDriverManager().install())
 options = Options()
 driver = webdriver.Chrome(service=service, options=options)
 
-# Movistar
 planes = []
 precios = []
 nombres_completos = []
@@ -161,7 +159,6 @@ for url in movistar['Link']:
 
     time.sleep(2)    
 
-# Crear DataFrame
 df_movistar = pd.DataFrame(data={
     'Nombre del Plan': planes,
     'Nombre Completo del Plan': nombres_completos,
@@ -188,12 +185,10 @@ for url in personal['Link']:
     driver.get(url)
 
     try:
-        # Verifica que la página cargue correctamente
         if "Error" in driver.title:  # Cambia "Error" por algo específico si es necesario
             print(f"URL {url} no cargó correctamente.")
             continue
 
-        # Espera el nombre del plan
         plan = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CLASS_NAME, "OfferDetail_titleOffer__lxNyY"))
         ).text
@@ -206,7 +201,6 @@ for url in personal['Link']:
 
         precio = precio.replace("$", "").replace(" final por mes", "").strip()
 
-        # Extrae cantidad de gigas
         cantidad_de_gigas_match = re.search(r'(\d+)\s*(?:GB|gb|Gigas|gigas)', plan)
         if cantidad_de_gigas_match:
             cantidad_de_gigas = cantidad_de_gigas_match.group(1)  
@@ -243,13 +237,10 @@ concatenado.to_excel('Celular.xlsx')
 
 # # funcion descargar pdf's
 
-# Set up Chrome driver
 service = Service(ChromeDriverManager().install())
 options = Options()
 driver = webdriver.Chrome(service=service, options=options)
 
-# Assuming 'concatenado' is a DataFrame and has the required columns
-# Make sure the 'URL' and 'Nombre del Plan' columns exist
 for index, row in concatenado.iterrows():
     try:
         url = row['URL']
@@ -273,7 +264,7 @@ for index, row in concatenado.iterrows():
 
         # Press Enter to save the file
         pyautogui.press('enter')
-        time.sleep(2)  # Wait for the action to finish
+        time.sleep(2) 
 
         print(f"Successfully processed {url} with file name {file_name}")
     
