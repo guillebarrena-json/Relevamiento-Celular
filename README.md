@@ -11,9 +11,9 @@ El modelo desarrollado permite extraer información actualizada directamente des
 
 ## 📦 Instalación
 
-1. **Clona este repositorio:**
-2. **Navega al directorio del proyecto:**
-3. **Instala las dependencias:**
+1. **Clona este repositorio**
+2. **Navega al directorio del proyecto**
+3. **Instala las dependencias**
 
 ## 🖥️ Uso
 
