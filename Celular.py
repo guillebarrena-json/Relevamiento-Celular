@@ -58,13 +58,14 @@ for url in excel['Link']:
         print(f"Failed after {attempts} attempts: {url}")
 
 
-# # función scrapear precios
+# función scrapear precios
 
 service = Service(ChromeDriverManager().install())
 options = Options()
 driver = webdriver.Chrome(service=service, options=options)
 
 # Claro
+
 planes = []
 precios = []
 nombres_completos = []
@@ -117,6 +118,7 @@ df_claro = pd.DataFrame(data={
 driver.quit()
 df_claro['Empresa'] = 'Claro'
 
+# Movistar
 
 service = Service(ChromeDriverManager().install())
 options = Options()
@@ -174,7 +176,8 @@ service = Service(ChromeDriverManager().install())
 options = Options()
 driver = webdriver.Chrome(service=service, options=options)
 
-# Movistar
+# Personal
+
 planes = []
 precios = []
 nombres_completos = []
@@ -220,6 +223,7 @@ for url in personal['Link']:
     time.sleep(2)    
 
 # Crear DataFrame
+
 df_personal = pd.DataFrame(data={
     'Nombre del Plan': planes,
     'Nombre Completo del Plan': nombres_completos,
@@ -235,7 +239,7 @@ concatenado = pd.concat([df_claro,df_movistar,df_personal])
 concatenado.to_excel('Celular.xlsx')
 
 
-# # funcion descargar pdf's
+# funcion descargar pdf's
 
 service = Service(ChromeDriverManager().install())
 options = Options()
